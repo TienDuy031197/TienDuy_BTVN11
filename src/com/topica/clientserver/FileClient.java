@@ -24,9 +24,10 @@ public class FileClient {
 		fileInputStream = new FileInputStream(file);
 		byte[] buffer = new byte[Constant.SIZE_BYTE];
 
-		while (fileInputStream.read(buffer) > 0) {
+		while (fileInputStream.read(buffer) != -1) {
 			dataOutputStream.write(buffer);
 		}
+		System.out.println("send file completed!");
 	}
 
 	public void close() throws IOException {
