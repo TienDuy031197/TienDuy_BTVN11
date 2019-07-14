@@ -25,18 +25,18 @@ public class FileServer {
 		try {
 			Socket socket = serverSocket.accept();
 			System.out.println("Client connected!");
-			saveFile(socket);
+			receiveFile(socket);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void saveFile(Socket clientSock) throws IOException {
+	private void receiveFile(Socket clientSock) throws IOException {
 		dataInputStream = new DataInputStream(clientSock.getInputStream());
 		fileOutputStream = new FileOutputStream(Constant.FILE_OUTPUT);
-		byte[] buffer = new byte[Constant.SIZE_BYTE];
+		byte[] buffer = new byte[Constant.LENGTH_BYTE];
 		int read = 0;
-		while ((read = dataInputStream.read(buffer, 0, Constant.SIZE_BYTE)) > 0) {
+		while ((read = dataInputStream.read(buffer, 0, Constant.LENGTH_BYTE)) != -1) {
 			fileOutputStream.write(buffer, 0, read);
 		}
 		System.out.println("Finish!");

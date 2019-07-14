@@ -22,7 +22,7 @@ public class FileClient {
 	public void sendFile(String file) throws IOException {
 		dataOutputStream = new DataOutputStream(socket.getOutputStream());
 		fileInputStream = new FileInputStream(file);
-		byte[] buffer = new byte[Constant.SIZE_BYTE];
+		byte[] buffer = new byte[Constant.LENGTH_BYTE];
 
 		while (fileInputStream.read(buffer) != -1) {
 			dataOutputStream.write(buffer);
